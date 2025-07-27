@@ -1,18 +1,19 @@
 ---
-import { getCollection, render } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-import BaseLayout from '../../layouts/base-layout.astro';
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/base-layout.astro";
 import { slugify } from "../../lib/utils";
 
 export interface Props {
-    post: CollectionEntry<'blog'>;
+    post: CollectionEntry<"blog">;
 }
 
 export const getStaticPaths = async () => {
-    const posts = await getCollection('blog');
+    const posts = await getCollection("blog");
     return posts.map((post) => ({
         params: { slug: slugify(post.data.title) },
-        props: { post }
+        props: { post },
     }));
 };
 
@@ -22,12 +23,20 @@ const { Content } = await render(post);
 
 <BaseLayout title={`Blog | ${post.data.title}`}>
     <article class="flex flex-col gap-4">
-        <h1 
-            class="text-4xl" 
-            transition:name={`post-title-${post.data.title}`}
+        <span
+            class="text-gray-600 mb-2"
+            transition:name={`post-date-${post.data.title}`}
         >
+            {new Date(post.data.pubDate).toLocaleDateString()}
+        </span>
+        <h1 class="text-4xl" transition:name={`post-title-${post.data.title}`}>
             {post.data.title}
         </h1>
+        <Image
+            src={post.data.coverImg}
+            alt={post.data.title}
+            className="w-full h-auto rounded-lg shadow"
+        />
         <p class="lead">{post.data.content}</p>
         <Content />
     </article>

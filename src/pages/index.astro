@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/base-layout.astro";
 import Link from "../components/link.astro";
+import Arrow from "../components/arrow.astro";
 import { slugify, dateFormatter } from "../lib/utils";
 
 import { getCollection } from "astro:content";
@@ -24,33 +25,37 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
         {/* Hero Post - Latest */}
         {
             heroPost && (
-                <article class="bg-gray-100 p-6 rounded-lg shadow-lg">
+                <article class="flex flex-col gap-4">
                     <Image
                         src={heroPost.data.coverImg}
                         alt={heroPost.data.title}
-                        className="w-full h-auto"
+                        className="w-full h-auto rounded-lg shadow"
                     />
-                    <Link
-                        internal
-                        href={`/posts/${slugify(heroPost.data.title)}`}
-                    >
-                        <h2
-                            class="text-3xl font-bold mb-2"
-                            transition:name={`post-title-${heroPost.data.title}`}
-                        >
-                            {heroPost.data.title}
-                        </h2>
-                    </Link>
-                    <p class="text-gray-600 mb-2">
-                        {new Date(heroPost.data.pubDate).toLocaleDateString()}
-                    </p>
-                    <p class="text-lg">{heroPost.data.description}</p>
-                    <div class="flex gap-2 mt-4">
-                        {heroPost.data.tags.map((tag) => (
-                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">
-                                {tag}
+                    <div class="flex flex-col">
+                        <div class="flex justify-between items-center">
+                            <Link
+                                internal
+                                href={`/posts/${slugify(heroPost.data.title)}`}
+                            >
+                                <h2
+                                    class="text-3xl font-bold mb-2"
+                                    transition:name={`post-title-${heroPost.data.title}`}
+                                >
+                                    {heroPost.data.title}
+                                </h2>
+                            </Link>
+                            <span class="text-gray-600 mb-2" transition:name={`post-date-${heroPost.data.title}`}>
+                                {new Date(heroPost.data.pubDate).toLocaleDateString()}
                             </span>
-                        ))}
+                        </div>
+                        <p class="text-lg">{heroPost.data.description}</p>
+                        <div class="flex gap-2 mt-4">
+                            {heroPost.data.tags.map((tag) => (
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </article>
             )
@@ -61,56 +66,64 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
             (secondPost || thirdPost) && (
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {secondPost && (
-                        <article class="bg-white border border-gray-200 p-4 rounded-lg shadow">
+                        <article class="flex flex-col gap-4">
                             <Image
                                 src={secondPost.data.coverImg}
                                 alt={secondPost.data.title}
-                                className="w-full h-auto"
+                                className="w-full h-auto rounded-lg shadow"
                             />
-                            <h2 class="text-xl font-semibold mb-2">
-                                {secondPost.data.title}
-                            </h2>
-                            <p class="text-gray-500 text-sm mb-2">
-                                {new Date(
-                                    secondPost.data.pubDate,
-                                ).toLocaleDateString()}
-                            </p>
-                            <p class="text-gray-700">
-                                {secondPost.data.description}
-                            </p>
-                            <div class="flex gap-2 mt-3">
-                                {secondPost.data.tags.map((tag) => (
-                                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                                        {tag}
+                            <div class="flex flex-col">
+                                 <div class="flex justify-between items-center">
+                                    <h2 class="text-xl font-semibold mb-2" transition:name={`post-title-${secondPost.data.title}`}>
+                                        {secondPost.data.title}
+                                    </h2>
+                                    <span class="text-gray-500 text-sm mb-2" transition:name={`post-date-${secondPost.data.title}`}>
+                                        {new Date(
+                                            secondPost.data.pubDate,
+                                        ).toLocaleDateString()}
                                     </span>
-                                ))}
+                                 </div>
+                                <p class="text-gray-700">
+                                    {secondPost.data.description}
+                                </p>
+                                <div class="flex gap-2 mt-3">
+                                    {secondPost.data.tags.map((tag) => (
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </article>
                     )}
                     {thirdPost && (
-                        <article class="bg-white border border-gray-200 p-4 rounded-lg shadow">
+                        <article class="flex flex-col gap-4">
                             <Image
                                 src={thirdPost.data.coverImg}
                                 alt={thirdPost.data.title}
-                                className="w-full h-auto"
+                                className="w-full h-auto rounded-lg shadow"
                             />
-                            <h2 class="text-xl font-semibold mb-2">
-                                {thirdPost.data.title}
-                            </h2>
-                            <p class="text-gray-500 text-sm mb-2">
-                                {new Date(
-                                    thirdPost.data.pubDate,
-                                ).toLocaleDateString()}
-                            </p>
-                            <p class="text-gray-700">
-                                {thirdPost.data.description}
-                            </p>
-                            <div class="flex gap-2 mt-3">
-                                {thirdPost.data.tags.map((tag) => (
-                                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                                        {tag}
+                            <div class="flex flex-col">
+                                 <div class="flex justify-between items-center">
+                                    <h2 class="text-xl font-semibold mb-2" transition:name={`post-title-${thirdPost.data.title}`}>
+                                        {thirdPost.data.title}
+                                    </h2>
+                                    <span class="text-gray-500 text-sm mb-2" transition:name={`post-date-${thirdPost.data.title}`}>
+                                        {new Date(
+                                            thirdPost.data.pubDate,
+                                        ).toLocaleDateString()}
                                     </span>
-                                ))}
+                                 </div>
+                                <p class="text-gray-700">
+                                    {thirdPost.data.description}
+                                </p>
+                                <div class="flex gap-2 mt-3">
+                                    {thirdPost.data.tags.map((tag) => (
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </article>
                     )}
@@ -123,23 +136,18 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
             restPosts.length > 0 && (
                 <div class="flex flex-col gap-4">
                     {restPosts.map((post) => (
-                        <article class="bg-white border-l-4 border-blue-500 p-4 shadow">
-                            <h2 class="text-lg font-medium mb-1">
-                                {post.data.title}
-                            </h2>
-                            <p class="text-gray-500 text-sm mb-2">
+                        <article class="flex justify-between items-center">
+                            <div class="flex items-center group gap-2">
+                                <Arrow />
+                                <h2 class="text-lg font-medium" transition:name={`post-title-${post.data.title}`}>
+                                    {post.data.title}
+                                </h2>
+                            </div>
+                            <span class="text-gray-500 text-sm" transition:name={`post-date-${post.data.title}`}>
                                 {new Date(
                                     post.data.pubDate,
                                 ).toLocaleDateString()}
-                            </p>
-                            <p class="text-gray-600">{post.data.description}</p>
-                            <div class="flex gap-2 mt-2">
-                                {post.data.tags.map((tag) => (
-                                    <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
+                            </span>
                         </article>
                     ))}
                 </div>
