@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/base-layout.astro";
+import Prose from "../../components/prose.astro";
 import { slugify } from "../../lib/utils";
 
 export interface Props {
@@ -25,7 +26,6 @@ const { Content } = await render(post);
     <article class="flex flex-col gap-4">
         <span
             class="text-gray-600 mb-2"
-            transition:name={`post-date-${post.data.title}`}
         >
             {new Date(post.data.pubDate).toLocaleDateString()}
         </span>
@@ -33,11 +33,15 @@ const { Content } = await render(post);
             {post.data.title}
         </h1>
         <Image
+            loading="eager"
             src={post.data.coverImg}
             alt={post.data.title}
             className="w-full h-auto rounded-lg shadow"
+            transition:name={`post-image-${post.data.title}`}
         />
-        <p class="lead">{post.data.content}</p>
-        <Content />
+        <p class="lead" transition:name={`post-description-${post.data.title}`}>{post.data.description}</p>
+        <Prose>
+            <Content />
+        </Prose>
     </article>
 </BaseLayout>

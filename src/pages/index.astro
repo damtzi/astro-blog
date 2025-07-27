@@ -25,39 +25,44 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
         {/* Hero Post - Latest */}
         {
             heroPost && (
-                <article class="flex flex-col gap-4">
-                    <Image
-                        src={heroPost.data.coverImg}
-                        alt={heroPost.data.title}
-                        className="w-full h-auto rounded-lg shadow"
-                    />
-                    <div class="flex flex-col">
-                        <div class="flex justify-between items-center">
-                            <Link
-                                internal
-                                href={`/posts/${slugify(heroPost.data.title)}`}
-                            >
+                <a
+                    href={`/posts/${slugify(heroPost.data.title)}`}
+                    class="group hover:cursor-pointer"
+                >
+                    <article class="flex flex-col gap-4">
+                        <Image
+                            src={heroPost.data.coverImg}
+                            alt={heroPost.data.title}
+                            className="w-full h-auto rounded-lg shadow"
+                            transition:name={`post-image-${heroPost.data.title}`}
+                        />
+                        <div class="flex flex-col">
+                            <div class="flex justify-between items-center">
                                 <h2
                                     class="text-3xl font-bold mb-2"
                                     transition:name={`post-title-${heroPost.data.title}`}
                                 >
                                     {heroPost.data.title}
                                 </h2>
-                            </Link>
-                            <span class="text-foreground/50 dark:text-foreground/60" transition:name={`post-date-${heroPost.data.title}`}>
-                                {new Date(heroPost.data.pubDate).toLocaleDateString()}
-                            </span>
-                        </div>
-                        <p class="text-lg">{heroPost.data.description}</p>
-                        <div class="flex gap-2 mt-4">
-                            {heroPost.data.tags.map((tag) => (
-                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">
-                                    {tag}
+                                <span
+                                    class="text-foreground/50 dark:text-foreground/60"
+                                >
+                                    {new Date(
+                                        heroPost.data.pubDate,
+                                    ).toLocaleDateString()}
                                 </span>
-                            ))}
+                            </div>
+                            <p class="text-lg" transition:name={`post-description-${heroPost.data.title}`}>{heroPost.data.description}</p>
+                            <div class="flex gap-2 mt-4">
+                                {heroPost.data.tags.map((tag) => (
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                </a>
             )
         }
 
@@ -66,66 +71,86 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
             (secondPost || thirdPost) && (
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {secondPost && (
-                        <article class="flex flex-col gap-4">
-                            <Image
-                                src={secondPost.data.coverImg}
-                                alt={secondPost.data.title}
-                                className="w-full h-auto rounded-lg shadow"
-                            />
-                            <div class="flex flex-col">
-                                 <div class="flex justify-between items-center">
-                                    <h2 class="text-xl font-semibold mb-2" transition:name={`post-title-${secondPost.data.title}`}>
-                                        {secondPost.data.title}
-                                    </h2>
-                                    <span class="text-foreground/50 dark:text-foreground/60 text-sm" transition:name={`post-date-${secondPost.data.title}`}>
-                                        {new Date(
-                                            secondPost.data.pubDate,
-                                        ).toLocaleDateString()}
-                                    </span>
-                                 </div>
-                                <p class="">
-                                    {secondPost.data.description}
-                                </p>
-                                <div class="flex gap-2 mt-3">
-                                    {secondPost.data.tags.map((tag) => (
-                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                                            {tag}
+                        <a
+                            href={`/posts/${slugify(secondPost.data.title)}`}
+                            class="group hover:cursor-pointer"
+                        >
+                            <article class="flex flex-col gap-4">
+                                <Image
+                                    src={secondPost.data.coverImg}
+                                    alt={secondPost.data.title}
+                                    className="w-full h-auto rounded-lg shadow"
+                                    transition:name={`post-image-${secondPost.data.title}`}
+                                />
+                                <div class="flex flex-col">
+                                    <div class="flex justify-between items-center">
+                                        <h2
+                                            class="text-xl font-semibold mb-2"
+                                            transition:name={`post-title-${secondPost.data.title}`}
+                                        >
+                                            {secondPost.data.title}
+                                        </h2>
+                                        <span
+                                            class="text-foreground/50 dark:text-foreground/60 text-sm"
+                                        >
+                                            {new Date(
+                                                secondPost.data.pubDate,
+                                            ).toLocaleDateString()}
                                         </span>
-                                    ))}
+                                    </div>
+                                    <p class="" transition:name={`post-description-${secondPost.data.title}`}>
+                                        {secondPost.data.description}
+                                    </p>
+                                    <div class="flex gap-2 mt-3">
+                                        {secondPost.data.tags.map((tag) => (
+                                            <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
+                            </article>
+                        </a>
                     )}
                     {thirdPost && (
-                        <article class="flex flex-col gap-4">
-                            <Image
-                                src={thirdPost.data.coverImg}
-                                alt={thirdPost.data.title}
-                                className="w-full h-auto rounded-lg shadow"
-                            />
-                            <div class="flex flex-col">
-                                 <div class="flex justify-between items-center">
-                                    <h2 class="text-xl font-semibold mb-2" transition:name={`post-title-${thirdPost.data.title}`}>
-                                        {thirdPost.data.title}
-                                    </h2>
-                                    <span class="text-foreground/50 dark:text-foreground/60 text-sm" transition:name={`post-date-${thirdPost.data.title}`}>
-                                        {new Date(
-                                            thirdPost.data.pubDate,
-                                        ).toLocaleDateString()}
-                                    </span>
-                                 </div>
-                                <p class="">
-                                    {thirdPost.data.description}
-                                </p>
-                                <div class="flex gap-2 mt-3">
-                                    {thirdPost.data.tags.map((tag) => (
-                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                                            {tag}
+                        <a
+                            href={`/posts/${slugify(thirdPost.data.title)}`}
+                            class="group hover:cursor-pointer"
+                        >
+                            <article class="flex flex-col gap-4">
+                                <Image
+                                    src={thirdPost.data.coverImg}
+                                    alt={thirdPost.data.title}
+                                    className="w-full h-auto rounded-lg shadow"
+                                    transition:name={`post-image-${thirdPost.data.title}`}
+                                />
+                                <div class="flex flex-col">
+                                    <div class="flex justify-between items-center">
+                                        <h2
+                                            class="text-xl font-semibold mb-2"
+                                            transition:name={`post-title-${thirdPost.data.title}`}
+                                        >
+                                            {thirdPost.data.title}
+                                        </h2>
+                                        <span
+                                            class="text-foreground/50 dark:text-foreground/60 text-sm"
+                                        >
+                                            {new Date(
+                                                thirdPost.data.pubDate,
+                                            ).toLocaleDateString()}
                                         </span>
-                                    ))}
+                                    </div>
+                                    <p class="" transition:name={`post-description-${thirdPost.data.title}`}>{thirdPost.data.description}</p>
+                                    <div class="flex gap-2 mt-3">
+                                        {thirdPost.data.tags.map((tag) => (
+                                            <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
+                            </article>
+                        </a>
                     )}
                 </div>
             )
@@ -136,19 +161,30 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
             restPosts.length > 0 && (
                 <div class="flex flex-col gap-4">
                     {restPosts.map((post) => (
-                        <article class="flex justify-between items-center">
-                            <div class="flex items-center group gap-2">
-                                <Arrow />
-                                <h2 class="text-lg font-medium" transition:name={`post-title-${post.data.title}`}>
-                                    {post.data.title}
-                                </h2>
-                            </div>
-                            <span class="text-foreground/50 dark:text-foreground/60 text-sm" transition:name={`post-date-${post.data.title}`}>
-                                {new Date(
-                                    post.data.pubDate,
-                                ).toLocaleDateString()}
-                            </span>
-                        </article>
+                        <a
+                            href={`/posts/${slugify(post.data.title)}`}
+                            class="group hover:cursor-pointer"
+                        >
+                            <article class="flex justify-between items-center">
+                                <div class="flex items-center group gap-2">
+                                    <Arrow />
+                                    <h2
+                                        class="text-lg font-medium"
+                                        transition:name={`post-title-${post.data.title}`}
+                                    >
+                                        {post.data.title}
+                                    </h2>
+                                </div>
+                                <span
+                                    class="text-foreground/50 dark:text-foreground/60 text-sm"
+                                    transition:name={`post-date-${post.data.title}`}
+                                >
+                                    {new Date(
+                                        post.data.pubDate,
+                                    ).toLocaleDateString()}
+                                </span>
+                            </article>
+                        </a>
                     ))}
                 </div>
             )
