@@ -44,7 +44,7 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
                                     {heroPost.data.title}
                                 </h2>
                             </Link>
-                            <span class="text-gray-600 mb-2" transition:name={`post-date-${heroPost.data.title}`}>
+                            <span class="text-foreground/50 dark:text-foreground/60" transition:name={`post-date-${heroPost.data.title}`}>
                                 {new Date(heroPost.data.pubDate).toLocaleDateString()}
                             </span>
                         </div>
@@ -77,13 +77,13 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
                                     <h2 class="text-xl font-semibold mb-2" transition:name={`post-title-${secondPost.data.title}`}>
                                         {secondPost.data.title}
                                     </h2>
-                                    <span class="text-gray-500 text-sm mb-2" transition:name={`post-date-${secondPost.data.title}`}>
+                                    <span class="text-foreground/50 dark:text-foreground/60 text-sm" transition:name={`post-date-${secondPost.data.title}`}>
                                         {new Date(
                                             secondPost.data.pubDate,
                                         ).toLocaleDateString()}
                                     </span>
                                  </div>
-                                <p class="text-gray-700">
+                                <p class="">
                                     {secondPost.data.description}
                                 </p>
                                 <div class="flex gap-2 mt-3">
@@ -108,13 +108,13 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
                                     <h2 class="text-xl font-semibold mb-2" transition:name={`post-title-${thirdPost.data.title}`}>
                                         {thirdPost.data.title}
                                     </h2>
-                                    <span class="text-gray-500 text-sm mb-2" transition:name={`post-date-${thirdPost.data.title}`}>
+                                    <span class="text-foreground/50 dark:text-foreground/60 text-sm" transition:name={`post-date-${thirdPost.data.title}`}>
                                         {new Date(
                                             thirdPost.data.pubDate,
                                         ).toLocaleDateString()}
                                     </span>
                                  </div>
-                                <p class="text-gray-700">
+                                <p class="">
                                     {thirdPost.data.description}
                                 </p>
                                 <div class="flex gap-2 mt-3">
@@ -143,7 +143,7 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
                                     {post.data.title}
                                 </h2>
                             </div>
-                            <span class="text-gray-500 text-sm" transition:name={`post-date-${post.data.title}`}>
+                            <span class="text-foreground/50 dark:text-foreground/60 text-sm" transition:name={`post-date-${post.data.title}`}>
                                 {new Date(
                                     post.data.pubDate,
                                 ).toLocaleDateString()}
