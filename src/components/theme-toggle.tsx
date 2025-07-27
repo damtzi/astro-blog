@@ -30,7 +30,7 @@ export const ThemeToggle = () => {
         if (moon && sun) {
             animate([
                 [moon, { y: 32 }],
-                [sun, { y: -32 }, { at: "+0.5" }],
+                [sun, { y: -32 }, { at: '+0.5' }]
             ]);
         }
     };

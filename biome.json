@@ -6,7 +6,18 @@
         "useIgnoreFile": false
     },
     "files": {
-        "ignoreUnknown": false
+        "ignoreUnknown": false,
+        "includes": [
+            "**",
+            "!**/build",
+            "!**/dist",
+            "!**/node_modules",
+            "!**/playwright-report",
+            "!**/.vercel",
+            "!**/.netlify",
+            "!**/.vscode",
+            "!**/.astro"
+        ]
     },
     "formatter": {
         "enabled": true,
