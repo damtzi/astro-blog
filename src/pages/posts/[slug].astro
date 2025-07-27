@@ -22,7 +22,12 @@ const { Content } = await render(post);
 
 <BaseLayout title={`Blog | ${post.data.title}`}>
     <article class="flex flex-col gap-4">
-        <h1 class="text-4xl">{post.data.title}</h1>
+        <h1 
+            class="text-4xl" 
+            transition:name={`post-title-${post.data.title}`}
+        >
+            {post.data.title}
+        </h1>
         <p class="lead">{post.data.content}</p>
         <Content />
     </article>

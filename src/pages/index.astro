@@ -1,7 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/base-layout.astro";
 import Link from "../components/link.astro";
-import { slugify } from "../lib/utils";
+import { slugify, dateFormatter } from "../lib/utils";
 
 import { getCollection } from "astro:content";
 
@@ -24,8 +25,19 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
         {
             heroPost && (
                 <article class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <Link internal href={`/posts/${slugify(heroPost.data.title)}`}>
-                        <h2 class="text-3xl font-bold mb-2">
+                    <Image
+                        src={heroPost.data.coverImg}
+                        alt={heroPost.data.title}
+                        className="w-full h-auto"
+                    />
+                    <Link
+                        internal
+                        href={`/posts/${slugify(heroPost.data.title)}`}
+                    >
+                        <h2
+                            class="text-3xl font-bold mb-2"
+                            transition:name={`post-title-${heroPost.data.title}`}
+                        >
                             {heroPost.data.title}
                         </h2>
                     </Link>
@@ -50,6 +62,11 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {secondPost && (
                         <article class="bg-white border border-gray-200 p-4 rounded-lg shadow">
+                            <Image
+                                src={secondPost.data.coverImg}
+                                alt={secondPost.data.title}
+                                className="w-full h-auto"
+                            />
                             <h2 class="text-xl font-semibold mb-2">
                                 {secondPost.data.title}
                             </h2>
@@ -72,6 +89,11 @@ const [secondPost, thirdPost, ...restPosts] = remainingPosts;
                     )}
                     {thirdPost && (
                         <article class="bg-white border border-gray-200 p-4 rounded-lg shadow">
+                            <Image
+                                src={thirdPost.data.coverImg}
+                                alt={thirdPost.data.title}
+                                className="w-full h-auto"
+                            />
                             <h2 class="text-xl font-semibold mb-2">
                                 {thirdPost.data.title}
                             </h2>
