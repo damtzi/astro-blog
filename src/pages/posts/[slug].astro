@@ -2,9 +2,9 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { getCollection, render } from 'astro:content';
-import Prose from '../../components/prose.astro';
-import BaseLayout from '../../layouts/base-layout.astro';
-import { slugify } from '../../lib/utils';
+import Prose from '@/components/prose.astro';
+import BaseLayout from '@/layouts/base-layout.astro';
+import { slugify } from '@/lib/utils';
 
 export interface Props {
     post: CollectionEntry<'blog'>;
