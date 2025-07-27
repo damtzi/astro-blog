@@ -1,0 +1,23 @@
+---
+const { href, internal } = Astro.props;
+---
+
+{
+	internal ? (
+		<a
+			href={href}
+			class="transition-colors duration-150 ease-out hover:text-blue-200 hover:cursor-pointer underline decoration-blue-300 decoration-2"
+		>
+			<slot/>
+		</a>
+	) : (
+		<a
+			href={href}
+			class="transition-colors duration-150 ease-out hover:text-blue-200 hover:cursor-pointer underline decoration-blue-300 decoration-2"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			<slot/>
+		</a>
+	)
+}
