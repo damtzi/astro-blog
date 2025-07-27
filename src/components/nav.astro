@@ -1,0 +1,16 @@
+---
+import { ThemeToggle } from './theme-toggle';
+---
+
+<nav class="flex items-center justify-between font-ibm">
+    <div class="flex items-center gap-2">
+        <div class="rounded-full size-9 bg-orange-400" />
+        <div class="flex flex-col">
+            <span>Jan Kowalski</span>
+            <span class="text-black/50 dark:text-off-white/60"
+                >Blog author</span
+            >
+        </div>
+    </div>
+    <ThemeToggle client:load />
+</nav>

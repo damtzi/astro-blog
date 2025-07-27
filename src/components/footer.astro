@@ -1,0 +1,32 @@
+---
+const footerLinks = [
+    { href: 'https://github.com', text: 'github' },
+    { href: 'https://bsky.app', text: 'bluesky' },
+    { href: 'https://www.instagram.com', text: 'instagram' },
+    { href: 'mailto:jan@kowalski.com', text: 'email' }
+];
+---
+
+<footer class="flex flex-col items-center justify-center gap-4">
+    <div class="flex items-center justify-center">
+    {
+        footerLinks.map((link, index) => (
+            <>
+                <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer"
+                >
+                    {link.text}
+                </a>
+                {index !== footerLinks.length - 1 && (
+                    <svg width="6" height="6" class="mx-4">
+						<circle cx="3" cy="3" r="3" fill="#0007fb" />
+					</svg>
+                )}
+            </>
+        ))
+    }
+    </div>
+</footer>
