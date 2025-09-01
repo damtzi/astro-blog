@@ -6,3 +6,4 @@ An exploration into Astro.
 - MDX
 - Tailwind CSS v4
 - View Transition API
+- Cloudflare Workers
